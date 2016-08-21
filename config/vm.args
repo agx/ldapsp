@@ -1,0 +1,6 @@
+-name ldapsp
+
+-setcookie ldapsp_cookie
+
++K true
++A30

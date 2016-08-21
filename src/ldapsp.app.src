@@ -1,0 +1,21 @@
+%%-*- mode: erlang -*-
+{application, ldapsp,
+ [
+  {description, "ldapsp"},
+  {vsn, "1"},
+  {modules, []},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  inets,
+                  crypto,
+                  mochiweb,
+                  webmachine
+                 ]},
+  {mod, { ldapsp_app, []}},
+  {env, [
+	 {web_ip, "127.0.0.1"},
+	 {web_port, 8080}
+  ]}
+ ]}.

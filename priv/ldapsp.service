@@ -1,0 +1,14 @@
+[Unit]
+Description=Foreman LDAP SmartProxy
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=ldapsp
+ExecStart=/opt/ldapsp/bin/ldapsp foreground
+ExecStop=/opt/ldapsp/bin/ldapsp stop
+Environment=CODE_LOADING_MODE=interactive ERL_LIBS=/opt/ldapsp
+
+[Install]
+WantedBy=multi-user.target
+
