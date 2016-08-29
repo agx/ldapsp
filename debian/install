@@ -1,0 +1,4 @@
+_build/prod/rel/ldapsp/ opt/
+priv/policy.erl  etc/ldapsp
+priv/ldapsp.conf etc/ldapsp
+priv/policy.conf etc/ldapsp

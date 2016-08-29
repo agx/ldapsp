@@ -1,0 +1,4 @@
+etc/ldapsp opt/ldapsp/lib/ldapsp-1/priv
+etc/ldapsp opt/ldapsp/priv
+var/log/ldapsp etc/ldapsp/log
+var/log/ldapsp opt/ldapsp/log

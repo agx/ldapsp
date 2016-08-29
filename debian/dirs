@@ -1,0 +1,3 @@
+/etc/ldapsp
+# Until we move everything to journald
+/var/log/ldapsp

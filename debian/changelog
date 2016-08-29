@@ -1,0 +1,5 @@
+ldapsp (0.0.1-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Guido Günther <agx@sigxcpu.org>  Mon, 29 Aug 2016 07:17:04 +0200
