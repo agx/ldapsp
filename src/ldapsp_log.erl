@@ -8,17 +8,17 @@
 
 -spec info(string(), list()) -> ok.
 info(Fmt, Args) ->
-    io:fwrite("[I] Ldasp: " ++ Fmt, Args).
+    webmachine_log:log_info(io_lib:format(Fmt, Args)).
 
 -spec warn(string(), list()) -> ok.
 warn(Fmt, Args) ->
-    io:fwrite("[W] Ldasp: " ++ Fmt, Args).
+    webmachine_log:log_error(io_lib:format(Fmt, Args)).
 
 -spec err(string(), list()) -> ok.
 err(Fmt, Args) ->
-    io:fwrite("[E] Ldasp: " ++ Fmt, Args).
+    webmachine_log:log_error(io_lib:format(Fmt, Args)).
 
 -spec debug(string(), list()) -> ok.
 debug(Fmt, Args) ->
-    io:fwrite("[D] Ldasp: " ++ Fmt, Args).
+    webmachine_log:log_info(io_lib:format(Fmt, Args)).
 
