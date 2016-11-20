@@ -27,6 +27,7 @@ content_types_provided(RD, Ctx) ->
      RD, Ctx}.
 
 %% /realm/:realm/
+-spec process_post(any(), any()) -> no_return().
 process_post(RD, Ctx) ->
     Realm = wrq:path_info(realm, RD),
 
