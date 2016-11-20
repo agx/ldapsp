@@ -1,0 +1,11 @@
+sudo: false
+language: erlang
+install: 'true'
+otp_release:
+- 19.1
+- 18.0
+script:
+  - "make"
+cache:
+  directories:
+  - "$HOME/.cache/rebar3/hex/default"

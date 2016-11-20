@@ -1,5 +1,7 @@
 # A Realm smart proxy for Foreman
 
+[![Build Status](https://travis-ci.org/theforeman/foreman_ansible_inventory.svg?branch=master)](https://travis-ci.org/theforeman/foreman_ansible_inventory)
+
 A simple smart proxy that creates LDAP entries on host creation and removes
 them on destroy. It uses Foreman's realm smart proxy API.
 
