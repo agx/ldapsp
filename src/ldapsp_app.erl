@@ -26,7 +26,7 @@
 
 start(_Type, _StartArgs) ->
     LogHandlers = [{webmachine_access_log_handler, ["priv/log"]},
-                   {webmachine_error_log_handler, ["priv/log"]}],
+                   {ldapsp_error_log_handler, ["priv/log"]}],
     application:set_env(webmachine, log_handlers, LogHandlers), 
     % Evil hack so we reprocess the app config
     webmachine:stop(),
