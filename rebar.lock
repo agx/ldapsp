@@ -1,7 +1,7 @@
 {"1.1.0",
 [{<<"mochiweb">>,{pkg,<<"mochiweb">>,<<"2.12.2">>},1},
  {<<"webmachine">>,
-  {git,"git://github.com/webmachine/webmachine",
+  {git,"https://github.com/webmachine/webmachine",
        {ref,"b4758b51c05e8f4e8898a70b7a14514a8c150ffa"}},
   0}]}.
 [
