@@ -1,6 +1,6 @@
 # A Realm smart proxy for the Foreman
 
-[![Build Status](https://travis-ci.org/theforeman/foreman_ansible_inventory.svg?branch=master)](https://travis-ci.org/theforeman/foreman_ansible_inventory)
+[![Build Status](https://travis-ci.org/agx/ldapsp.svg?branch=master)](https://travis-ci.org/agx/ldapsp)
 
 ldapsp is a simple smart proxy for the [Foreman][] that creates LDAP
 entries on host creation and removes them on destroy. It uses
