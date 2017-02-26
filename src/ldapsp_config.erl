@@ -47,10 +47,7 @@ web_config() ->
 
 ldap_config() ->
     {ok, Config } = file:consult("priv/ldapsp.conf"),
-    Con = proplists:get_value(connection, Config),
-    [{server, proplists:get_value(server, Con)},
-     {user, proplists:get_value(user, Con)},
-     {password, proplists:get_value(password, Con)}].
+    proplists:get_value(connection, Config).
 
 policy_config() ->
     {ok, _Module} = compile:file("priv/policy.erl").

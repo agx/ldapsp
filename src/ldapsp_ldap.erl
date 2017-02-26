@@ -33,7 +33,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, {server, user, password}).
+-record(state, {server, user, password, tls=true, tls_opts}).
 
 %%%===================================================================
 %%% API
@@ -72,10 +72,13 @@ start_link(Args) ->
 %%                     {stop, Reason}
 %% @end
 %%--------------------------------------------------------------------
-init([{server, Server}, {user, User}, {password, Password}]) ->
-    {ok, #state{server=Server,
-		user=User,
-		password=Password}}.
+init(Opts) ->
+    {ok, #state{server=proplists:get_value(server, Opts),
+                tls=proplists:get_value(tls, Opts, true),
+                tls_opts=proplists:get_value(tls_opts, Opts,
+                                             [{verify_type, verify_peer}]),
+                user=proplists:get_value(user, Opts),
+                password=proplists:get_value(password, Opts)}}.
 
 %%--------------------------------------------------------------------
 %% @private
@@ -153,20 +156,29 @@ code_change(_OldVsn, State, _Extra) ->
 %%% Internal functions
 %%%===================================================================
 
-% -> ok , {error,Reaseon}
-do_add(Dn, Attributes, #state{server=Server, user=User, password=Pw}) ->
+start_tls(Handle, TLSOpts)->
+    ok = eldap:start_tls(Handle, TLSOpts).
+
+connect(#state{server=Server, user=User, password=Pw, tls=TLS, tls_opts=TLSOpts}) ->
     {ok, Handle} = eldap:open([Server]),
+    ok = case TLS of
+        true -> start_tls(Handle, TLSOpts);
+        _    -> ok
+    end,
     ok = eldap:simple_bind(Handle, User, Pw),
+    {ok, Handle}.
+
+% -> ok , {error,Reaseon}
+do_add(Dn, Attributes, State) ->
+    {ok, Handle} = connect(State),
     ldapsp_log:debug("Will create: ~p with ~p~n", [Dn, Attributes]),
     Resp = eldap:add(Handle, Dn, Attributes),
     check_close(eldap:close(Handle)),
     Resp.
 
 % -> ok , {error,Reaseon}
-do_delete(Dn, #state{server=Server, user=User, password=Pw}) ->
-    {ok, Handle} = eldap:open([Server]),
-    ok = eldap:simple_bind(Handle, User, Pw),
-    ldapsp_log:debug("Will delete: ~p~n", [Dn]),
+do_delete(Dn, State) ->
+    {ok, Handle} = connect(State),
     Resp = eldap:delete(Handle, Dn),
     check_close(eldap:close(Handle)),
     Resp.
@@ -175,4 +187,3 @@ check_close(ok) -> ok;
 % erlang 17.1 has another return value than 1.18.3
 check_close({_Pid, close}) -> ok;
 check_close(EverythingElse) -> ok = EverythingElse.
-    
