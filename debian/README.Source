@@ -1,0 +1,7 @@
+The package currently relies on rebar3 to fetch webmachine and mochikit during
+the build. So when building with git-buildpackage and pbuilder you have to
+allow network access e.g. via:
+
+    gbp buildpackage --git-pbuilder-options="--use-network yes" --git-dist=jessie  --git-no-pristine-tar
+
+This builds a self contained application with minimal external dependencies.
