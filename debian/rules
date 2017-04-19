@@ -7,7 +7,7 @@
 	dh $@ 
 
 override_dh_auto_build:
-	./rebar3 as prod release
+	HOME=$$(mktemp -d) ./rebar3 as prod release
 	cp priv/ldapsp.service debian/
 
 override_dh_install:
