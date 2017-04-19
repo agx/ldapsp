@@ -5,6 +5,9 @@ Maintainer: Guido Günther <agx@sigxcpu.org>
 Build-Depends: debhelper (>=9),
  dh-systemd,
  erlang,
+# since we use ./rebar to fetch deps
+ ca-certificates,
+ git,
 Standards-Version: 3.9.8
 
 Package: ldapsp
