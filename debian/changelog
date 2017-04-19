@@ -1,3 +1,16 @@
+ldapsp (0.0.2-1) unstable; urgency=medium
+
+  * New Upsgtream version 0.0.2
+  * [1635c67] Add gbp.conf
+  * [fd9fb45] Add deps for rebar3 downloads
+  * [a340da6] Use a temporary directory for the package index
+  * [1c83f0c] Add README.Source
+  * [67e99e3] Add logrotate file
+  * [718ec96] Depend on adduser used in postinst
+  * [13b7060] Use --home without '=' to unconfuse lintian
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 19 Apr 2017 14:18:42 +0200
+
 ldapsp (0.0.1-1) unstable; urgency=medium
 
   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
