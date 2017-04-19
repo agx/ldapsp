@@ -12,7 +12,8 @@ Standards-Version: 3.9.8
 
 Package: ldapsp
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ adduser
 Description: LDAP Realm smartproxy for Foreman
  This smartproxy can be used to create/remove ldap 
  entries on host creation/removal.
