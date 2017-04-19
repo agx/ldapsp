@@ -12,7 +12,7 @@ add_users_groups()
   fi
 
   if ! getent passwd ldapsp >/dev/null; then
-    adduser --ingroup=ldapsp --quiet --system --home=/opt/ldapsp ldapsp
+    adduser --ingroup=ldapsp --quiet --system --home /opt/ldapsp ldapsp
   fi
 }
 
