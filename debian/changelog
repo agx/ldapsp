@@ -1,3 +1,11 @@
+ldapsp (0.0.2-2) unstable; urgency=medium
+
+  * [442ad0b] logrotate: use nocreate
+    to make sure ldapsp reopens the log after creation
+  * [a72ce4f] Use proper name for README.source
+
+ -- Guido Günther <agx@sigxcpu.org>  Tue, 25 Apr 2017 20:01:41 +0200
+
 ldapsp (0.0.2-1) unstable; urgency=medium
 
   * New Upsgtream version 0.0.2
