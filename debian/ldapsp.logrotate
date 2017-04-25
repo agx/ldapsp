@@ -1,5 +1,6 @@
 /var/log/ldapsp/ldapsp_error.log
 {
+  nocreate
   rotate 6
   weekly
   compress
