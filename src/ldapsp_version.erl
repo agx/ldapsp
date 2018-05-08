@@ -16,40 +16,37 @@
 %% You should have received a copy of the GNU General Public License
 %% along with ldapsp.  If not, see <http://www.gnu.org/licenses/>.
 %%-------------------------------------------------------------------
--module(ldapsp_config).
-
+-module(ldapsp_version).
 -export([
-	 dispatch/0,
-	 web_config/0,
-	 ldap_config/0,
-	 policy_config/0
+	 init/1,
+	 routes/0,
+	 to_html/2,
+	 to_json/2,
+         content_types_provided/2
 ]).
 
+-include_lib("webmachine/include/webmachine.hrl").
 
--spec dispatch() -> [webmachine_dispatcher:route()].
-dispatch() ->
-    Resources = [ldapsp_features,
-		 ldapsp_realm,
-		 ldapsp_realm_hostname,
-		 ldapsp_version
-		],
-    lists:flatten([Module:routes() || Module <- Resources]).
+-spec init(list()) -> {ok, term()}.
+init([]) ->
+    {ok, undefined}.
 
-web_config() ->
-    {ok, App} = application:get_application(?MODULE),
-    {ok, Ip} = application:get_env(App, web_ip),
-    {ok, Port} = application:get_env(App, web_port),
-    [
-     {ip, Ip},
-     {port, Port},
-     {log_dir, "priv/log"},
-     {dispatch, dispatch()}
-    ].
+%% @doc Return the routes this module should respond to.
+routes() ->
+    [{["version"], ?MODULE, []}].
 
-ldap_config() ->
-    {ok, Config } = file:consult("priv/ldapsp.conf"),
-    proplists:get_value(connection, Config).
+-spec to_json(wrq:reqdata(), term()) -> {iodata(), wrq:reqdata(), term()}.
+to_json(ReqData, State) ->
+    [Ver | _] = [ V || {App, _, V} <- application:which_applications(), App == ldapsp],
+    Version = list_to_binary(Ver),
+    Resp = mochijson2:encode([{"version", Version},
+			      {"modules", [{"realm", Version}]}]),
+    {Resp, ReqData, State}.
 
-policy_config() ->
-    {ok, _Module} = compile:file("priv/policy.erl").
-    
+to_html(ReqData, State) ->
+    to_json(ReqData, State).
+
+content_types_provided(RD, Ctx) ->
+   {[{"application/json", to_json},
+     {"text/html", to_html}],
+     RD, Ctx}.

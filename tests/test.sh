@@ -4,6 +4,9 @@ set -e
 HOST=${HOST:-localhost}
 
 # Check features
+curl -s -H "Content-Type: application/json" http://$HOST:8080/version
+
+# Check features
 curl -s -H "Content-Type: application/json" http://$HOST:8080/features \
     | grep -qs '["realm"]'
 
