@@ -1,3 +1,12 @@
+ldapsp (0.0.3-1) unstable; urgency=medium
+
+  * systemd: Drop dependency on syslog activated service
+  * Add version API used by Foreman 1.17
+  * Bump release to 0.0.3
+  * Don't hardcode release number
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 28 Nov 2018 11:25:19 +0100
+
 ldapsp (0.0.2-2) unstable; urgency=medium
 
   * [442ad0b] logrotate: use nocreate
