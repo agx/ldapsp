@@ -1,10 +1,10 @@
 {"1.1.0",
-[{<<"mochiweb">>,{pkg,<<"mochiweb">>,<<"2.12.2">>},1},
+[{<<"mochiweb">>,{pkg,<<"mochiweb">>,<<"2.18.0">>},1},
  {<<"webmachine">>,
   {git,"https://github.com/webmachine/webmachine",
-       {ref,"b4758b51c05e8f4e8898a70b7a14514a8c150ffa"}},
+       {ref,"92225b82fc702f78cf9d23248023ec841272df80"}},
   0}]}.
 [
 {pkg_hash,[
- {<<"mochiweb">>, <<"80804AD342AFA3D7F3524040D4EED66CE74B17A555DE454AC85B07C479928E46">>}]}
+ {<<"mochiweb">>, <<"EB55F1DB3E6E960FAC4E6DB4E2DB9EC3602CC9F30B86CD1481D56545C3145D2E">>}]}
 ].
