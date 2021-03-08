@@ -33,7 +33,7 @@
 
 -define(SERVER, ?MODULE).
 
--record(state, {server, user, password, tls=true, tls_opts}).
+-record(state, {server, user, password, opts, tls=true, tls_opts}).
 
 %%%===================================================================
 %%% API
@@ -77,6 +77,7 @@ init(Opts) ->
                 tls=proplists:get_value(tls, Opts, true),
                 tls_opts=proplists:get_value(tls_opts, Opts,
                                              [{verify_type, verify_peer}]),
+                opts=proplists:get_value(opts, Opts),
                 user=proplists:get_value(user, Opts),
                 password=proplists:get_value(password, Opts)}}.
 
@@ -159,8 +160,11 @@ code_change(_OldVsn, State, _Extra) ->
 start_tls(Handle, TLSOpts)->
     ok = eldap:start_tls(Handle, TLSOpts).
 
-connect(#state{server=Server, user=User, password=Pw, tls=TLS, tls_opts=TLSOpts}) ->
-    {ok, Handle} = eldap:open([Server]),
+connect(#state{server=Server, user=User, password=Pw, opts=Opts, tls=TLS, tls_opts=TLSOpts}) ->
+    {ok, Handle} = case Opts of
+		       undefined -> eldap:open([Server]);
+		       _         -> eldap:open([Server], Opts)
+		   end,
     ok = case TLS of
         true -> start_tls(Handle, TLSOpts);
         _    -> ok
