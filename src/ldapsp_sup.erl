@@ -37,7 +37,7 @@ init([]) ->
     Web = {webmachine_mochiweb,
            {webmachine_mochiweb, start, [ldapsp_config:web_config()]},
            permanent, 5000, worker, [mochiweb_socket_server]},
-    LdapArgs =  ldapsp_config:ldap_config(),
+    LdapArgs = ldapsp_config:ldap_config(),
     Proxy = ?CHILD(ldapsp_ldap, worker, LdapArgs),
     Processes = [Web, Proxy],
     {ok, { {one_for_one, 10, 10}, Processes} }.
