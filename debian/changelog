@@ -1,3 +1,13 @@
+ldapsp (0.0.4-1) unstable; urgency=medium
+
+  * New upsream version 0.0.4
+    * Use webmachine to 1.11.1
+  * d/control: Make sure erts scripts are executable
+  * d/control: Switch to dh-compat 12
+  * d/rules: Drop systemd handling.  Current defaults are fine
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 10 Mar 2021 11:48:24 +0100
+
 ldapsp (0.0.3-1) unstable; urgency=medium
 
   * systemd: Drop dependency on syslog activated service
