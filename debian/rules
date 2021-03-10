@@ -12,6 +12,7 @@ override_dh_auto_build:
 
 override_dh_install:
 	dh_install
+	chmod a+x debian/ldapsp/opt/ldapsp/erts-*/bin/*
 	rm -r debian/ldapsp/opt/ldapsp/lib/ldapsp-*/priv/
 
 override_dh_installinit:
