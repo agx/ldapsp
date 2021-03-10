@@ -7,7 +7,7 @@ Build-Depends: debhelper-compat (= 12),
 # since we use ./rebar to fetch deps
  ca-certificates,
  git,
-Standards-Version: 3.9.8
+Standards-Version: 4.5.1
 
 Package: ldapsp
 Architecture: any
