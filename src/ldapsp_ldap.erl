@@ -28,7 +28,9 @@
 	 terminate/2, code_change/3,
 	 %% API
 	 add/2,
-	 delete/1
+	 add/3,
+	 delete/1,
+	 delete/2
 	]).
 
 -define(SERVER, ?MODULE).
@@ -39,9 +41,17 @@
 %%% API
 %%%===================================================================
 
+-spec add(string(), list(), integer()) -> ok | {error,atom}.
+add(Dn, Attributes, Timeout) ->
+    gen_server:call(?SERVER, {add, Dn, Attributes}, Timeout).
+
 -spec add(string(), list()) -> ok | {error,atom}.
 add(Dn, Attributes) ->
     gen_server:call(?SERVER, {add, Dn, Attributes}).
+
+-spec delete(string(), integer()) -> ok | {error,atom}.
+delete(Dn, Timeout) ->
+    gen_server:call(?SERVER, {delete, Dn}, Timeout).
 
 -spec delete(string()) -> ok | {error,atom}.
 delete(Dn) ->
