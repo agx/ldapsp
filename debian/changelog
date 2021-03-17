@@ -1,3 +1,13 @@
+ldapsp (0.0.4-2) unstable; urgency=medium
+
+  * d/control: Drop dh-systemd.
+    Handled by debhelper.
+  * d/copyright: Update URL
+  * d/control: Bump standards version
+  * ldap: Add add/delete with timeout
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 17 Mar 2021 16:51:58 +0100
+
 ldapsp (0.0.4-1) unstable; urgency=medium
 
   * New upsream version 0.0.4
