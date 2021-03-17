@@ -1,0 +1,45 @@
+From: =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+Date: Wed, 17 Mar 2021 16:17:20 +0100
+Subject: ldap: Add add/delete with timeout
+
+This allows to work with super slow ldap servers.
+
+(cherry picked from commit 8fdf25981878d9cb1820f6dccf187f877088e758)
+---
+ src/ldapsp_ldap.erl | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/src/ldapsp_ldap.erl b/src/ldapsp_ldap.erl
+index 48b1780..9a9be66 100644
+--- a/src/ldapsp_ldap.erl
++++ b/src/ldapsp_ldap.erl
+@@ -28,7 +28,9 @@
+ 	 terminate/2, code_change/3,
+ 	 %% API
+ 	 add/2,
+-	 delete/1
++	 add/3,
++	 delete/1,
++	 delete/2
+ 	]).
+ 
+ -define(SERVER, ?MODULE).
+@@ -39,10 +41,18 @@
+ %%% API
+ %%%===================================================================
+ 
++-spec add(string(), list(), integer()) -> ok | {error,atom}.
++add(Dn, Attributes, Timeout) ->
++    gen_server:call(?SERVER, {add, Dn, Attributes}, Timeout).
++
+ -spec add(string(), list()) -> ok | {error,atom}.
+ add(Dn, Attributes) ->
+     gen_server:call(?SERVER, {add, Dn, Attributes}).
+ 
++-spec delete(string(), integer()) -> ok | {error,atom}.
++delete(Dn, Timeout) ->
++    gen_server:call(?SERVER, {delete, Dn}, Timeout).
++
+ -spec delete(string()) -> ok | {error,atom}.
+ delete(Dn) ->
+     gen_server:call(?SERVER, {delete, Dn}).
