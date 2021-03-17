@@ -1,3 +1,9 @@
+ldapsp (0.0.4-2~bpo10+1) buster; urgency=medium
+
+  * Buster backport
+
+ -- Guido Günther <agx@sigxcpu.org>  Wed, 17 Mar 2021 16:53:31 +0100
+
 ldapsp (0.0.4-2) unstable; urgency=medium
 
   * d/control: Drop dh-systemd.
