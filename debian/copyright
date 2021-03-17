@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: ldapsp
-Source: <url://example.com>
+Source: https://git.sigxcpu.org/cgit/ldapsp
 
 Files: *
 Copyright: 2016 Guido Günther <agx@sigxcpu.org>
